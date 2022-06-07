@@ -1,0 +1,11 @@
+Package: AMS
+Title: Analyse My Survey
+Version: 0.0.0.9000
+Authors@R: 
+    person("Peter", "Stikker", , "stikpet@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Package with .
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.0
