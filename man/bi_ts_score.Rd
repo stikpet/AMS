@@ -14,7 +14,11 @@ bi_ts_score(data, field, corr = FALSE)
 \item{corr}{A boolean TRUE or FALSE to indicate the use of a Yates correction}
 }
 \value{
-list With the z-statistic and the two-sided significance (p-value)
+result A dataframe with the following:
+
+zVal The z-statistic used
+
+pVal The p-value of the test (two sided)
 }
 \description{
 This function performs a one-sample score test.

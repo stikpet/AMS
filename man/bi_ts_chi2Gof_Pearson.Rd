@@ -14,11 +14,35 @@ bi_ts_chi2Gof_Pearson(data, field, corr = "none")
 \item{corr}{Correction to use, either 'none' (default), 'yates' for Yates, 'pearson' for Pearson or 'williams' for Williams}
 }
 \value{
-list With the chi-square value, degrees of freedom, sample size, and the two-sided significance (p-value)
+result A dataframe with the following:
+
+chi2Val The chi-square test statistic
+
+df The degrees of freedom
+
+n The sample size
+
+pVal The p-value (significance)
 }
 \description{
 This function performs a Pearson Chi-Square Goodness of Fit test.
 It assumes the probability of success in the population to be 0.5
+}
+\details{
+The test uses:
+\deqn{\chi^2 = \sum_{i=1}^k\frac{\left(F_i-E_i\right)^2}{E_i}}
+Where \eqn{k} is the number of categories (i.e. 2), \eqn{F_i} is the observed frequency of category i,
+and \eqn{E_i} the expected frequency (i.e. n/2)
+For the Yates continuity correction the formula is adjusted to:
+\deqn{\chi_{\text{Yates}}^2 = \sum_{i=1}^k\frac{\left(\left|F_i-E_i\right|-0.5\right)^2}{E_i}}
+For the E. Pearson correction:
+\deqn{\chi_{\text{E.Pearson}}^2 = \chi^2\times\frac{n-1}{n}}
+For the Williams correction:
+\deqn{\chi_{\text{Williams}}^2 = \frac{\chi^2}{q}}
+with:
+\deqn{q = 1+\frac{k^2-1}{6\times n\times df}}
+
+For more info on this test with R: https://youtu.be/27n2ko-S5U0
 }
 \author{
 P. Stikker

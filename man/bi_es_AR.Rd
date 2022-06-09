@@ -12,7 +12,11 @@ bi_es_AR(data, field)
 \item{field}{The field within the dataframe to use as string}
 }
 \value{
-list with the two alternative ratios
+results A dataframe with the following information
+
+AR1 The Alternative Ration for the first category
+
+AR2 The Alternative Ration for the second category
 }
 \description{
 This function performs calculates the Alternative Ratio (a.k.a. Relative Risk).

@@ -91,7 +91,9 @@ bi_ts_binomial <- function(data, field){
 #' @param data A dataframe
 #' @param field The field within the dataframe to use as string
 #' @param corr A boolean TRUE or FALSE to indicate the use of a Yates correction
-#' @return list With the z-statistic and the two-sided significance (p-value)
+#' @return result A dataframe with the following:
+#' @return zVal The z-statistic used
+#' @return pVal The p-value of the test (two sided)
 #' 
 #' @details 
 #' The test uses:
@@ -143,7 +145,9 @@ bi_ts_score <- function(data, field, corr=FALSE){
 #' @param data A dataframe
 #' @param field The field within the dataframe to use as string
 #' @param corr A boolean TRUE or FALSE to indicate the use of a Yates correction
-#' @return list With the z-statistic and the two-sided significance (p-value)
+#' @return result A dataframe with the following:
+#' @return zVal The z-statistic used
+#' @return pVal The p-value of the test (two sided)
 #' 
 #' @details
 #' The test uses:
@@ -186,7 +190,9 @@ bi_ts_wald <- function(data, field, corr=FALSE){
   
   pVal = pnorm(-abs(zVal))*2
   
-  return(c(zVal, pVal))
+  results <- data.frame(zVal=zVal, pVal=pVal)
+  
+  return(results)
 }
 
 
@@ -198,9 +204,13 @@ bi_ts_wald <- function(data, field, corr=FALSE){
 #' @param data A dataframe
 #' @param field The field within the dataframe to use as string
 #' @param corr Correction to use, either 'none' (default), 'yates' for Yates, 'pearson' for Pearson or 'williams' for Williams
-#' @return list With the chi-square value, degrees of freedom, sample size, and the two-sided significance (p-value)
+#' @return result A dataframe with the following:
+#' @return chi2Val The chi-square test statistic
+#' @return df The degrees of freedom
+#' @return n The sample size
+#' @return pVal The p-value (significance)
 #' 
-#' @detials
+#' @details
 #' The test uses:
 #' \deqn{\chi^2 = \sum_{i=1}^k\frac{\left(F_i-E_i\right)^2}{E_i}}
 #' Where \eqn{k} is the number of categories (i.e. 2), \eqn{F_i} is the observed frequency of category i, 
@@ -258,7 +268,9 @@ bi_ts_chi2Gof_Pearson <- function(data, field, corr='none'){
   # And the degrees of freedom:
   df = unname(chi2Gof$parameter)
   
-  return(c(chi2Val, df, n, pVal))
+  results <- data.frame(chi2Val=chi2Val, df=df, n=n, pVal=pVal)
+  
+  return(results)
 }
 
 
@@ -270,7 +282,11 @@ bi_ts_chi2Gof_Pearson <- function(data, field, corr='none'){
 #' @param data A dataframe
 #' @param field The field within the dataframe to use as string
 #' @param corr Correction to use, either 'none' (default), 'yates' for Yates, 'pearson' for Pearson or 'williams' for Williams
-#' @return list With the G value, degrees of freedom, sample size, and the two-sided significance (p-value)
+#' @return result A dataframe with the following:
+#' @return chi2Val The chi-square test statistic
+#' @return df The degrees of freedom
+#' @return n The sample size
+#' @return pVal The p-value (significance)
 #' 
 #' @details
 #' The test uses:
@@ -343,7 +359,9 @@ bi_ts_chi2Gof_G <- function(data, field, corr='none'){
   
   pVal = pchisq(G, 1, lower.tail = FALSE)
   
-  return(c(unname(G), unname(pVal)))
+  results <- data.frame(chi2Val=unname(G), df=1, n=n, pVal=unname(pVal))
+  
+  return(results)
 }
 
 
@@ -352,7 +370,9 @@ bi_ts_chi2Gof_G <- function(data, field, corr='none'){
 #' This function performs calculates Cohen's H_2.
 #' @param data A dataframe
 #' @param field The field within the dataframe to use as string
-#' @return list With a qualification and the effect size measure
+#' @return results A dataframe with the following information
+#' @return qual The qualification of the effect size
+#' @return es The effect size value
 #' 
 #' @details 
 #' Rosnow and Rosenthal (2003) mention as effect size for binary (they call it dichotomous) 
@@ -429,7 +449,9 @@ bi_es_cohenH2 <- function(data, field){
     qual = "large" 
   }
   
-  return(c(qual, h2))
+  results <- data.frame(qual=qual, es=h2)
+  
+  return(results)
   
 }
 
@@ -441,7 +463,9 @@ bi_es_cohenH2 <- function(data, field){
 #' 
 #' @param data A dataframe
 #' @param field The field within the dataframe to use as string
-#' @return list With a qualification and the effect size measure
+#' @return results A dataframe with the following information
+#' @return qual The qualification of the effect size
+#' @return es The effect size value
 #' 
 #' @details 
 #' Rosnow and Rosenthal (2003) mention as effect size for binary (they call it dichotomous) 
@@ -506,7 +530,9 @@ bi_es_coheng <- function(data, field){
     qual = "large" 
   }
   
-  return(c(qual, CohenG))
+  results <- data.frame(qual=qual, es=CohenG)
+  
+  return(results)
   
 }
 
@@ -516,7 +542,9 @@ bi_es_coheng <- function(data, field){
 #' This function performs calculates the Alternative Ratio (a.k.a. Relative Risk). 
 #' @param data A dataframe
 #' @param field The field within the dataframe to use as string
-#' @return list with the two alternative ratios
+#' @return results A dataframe with the following information
+#' @return AR1 The Alternative Ration for the first category
+#' @return AR2 The Alternative Ration for the second category
 #' 
 #' @details 
 #' JonB on CrossValidated suggests to use Relative Risks as effect size measure 
@@ -568,6 +596,8 @@ bi_es_AR <- function(data, field){
   
   AR2 <- prop[2]/p0
   
-  return(c(AR1, AR2))
+  results <- data.frame(AR1=AR1, AR2=AR2)
+  
+  return(results)
   
 }

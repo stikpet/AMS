@@ -14,7 +14,15 @@ bi_ts_chi2Gof_G(data, field, corr = "none")
 \item{corr}{Correction to use, either 'none' (default), 'yates' for Yates, 'pearson' for Pearson or 'williams' for Williams}
 }
 \value{
-list With the G value, degrees of freedom, sample size, and the two-sided significance (p-value)
+result A dataframe with the following:
+
+chi2Val The chi-square test statistic
+
+df The degrees of freedom
+
+n The sample size
+
+pVal The p-value (significance)
 }
 \description{
 This function performs a G Goodness of Fit test (a.k.a. likelihood ratio GoF).

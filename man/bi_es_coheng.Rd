@@ -12,7 +12,11 @@ bi_es_coheng(data, field)
 \item{field}{The field within the dataframe to use as string}
 }
 \value{
-list With a qualification and the effect size measure
+results A dataframe with the following information
+
+qual The qualification of the effect size
+
+es The effect size value
 }
 \description{
 This function performs calculates Cohen's g.
