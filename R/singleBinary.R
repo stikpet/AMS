@@ -416,11 +416,12 @@ bi_es_cohenH2 <- function(data, field){
   
   h <- h2 * sqrt(2)
   #Using Cohen (1988, p. 198):
-  if (h < 0.2){
+  habs <- abs(h)
+  if (habs < 0.2){
     qual = "negligible"
-  } else if (h < 0.5){
+  } else if (habs < 0.5){
     qual = "small"
-  } else if (h < 0.8){
+  } else if (habs < 0.8){
     qual = "medium"
   } else {
     qual = "large" 
