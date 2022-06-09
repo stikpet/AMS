@@ -771,9 +771,7 @@ nom_es_cohenw <- function(data, field, test='pearson', corr='none'){
 #' @param field Specific field name (as string) from data frame
 #' @param test Which test to use, either 'pearson' (default) or 'g'
 #' @param corr Correction to use in test, either 'none' (default), 'yates', 'pearson', or 'williams'
-#' @return results A dataframe with:
-#' @return qual A qualification of the effect size
-#' @return es The effect size
+#' @return E The effect size
 #' @export
 nom_es_jbme <- function(data, field, test='pearson', corr='none'){
   freq<-table(data[field])

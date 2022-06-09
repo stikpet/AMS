@@ -16,11 +16,7 @@ nom_es_jbme(data, field, test = "pearson", corr = "none")
 \item{corr}{Correction to use in test, either 'none' (default), 'yates', 'pearson', or 'williams'}
 }
 \value{
-results A dataframe with:
-
-qual A qualification of the effect size
-
-es The effect size
+E The effect size
 }
 \description{
 This function will determine JBM E
