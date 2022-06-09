@@ -131,7 +131,9 @@ bi_ts_score <- function(data, field, corr=FALSE){
     pVal = unname(testResults$p.value)
   }
   zVal = unname(sqrt(testResults$statistic))
-  return(c(zVal, pVal))
+  
+  results <- data.frame(zVal=zVal, pVal=pVal)
+  return(results)
 }
 
 #' Single Binary Test - One-Sample Wald test
