@@ -18,7 +18,13 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of AMS is to provide simple to use functions for analysing survey data. In this first release only functions for a binary variable are included.
+The goal of AMS is to provide simple to use functions for analysing survey data. 
+
+For now there are functions for:
+
+* A Single Binary Variable
+* A Single Nominal Variable
+* A Single Ordinal Variable
 
 Each function requires the name of a dataframe and the name of the specific field (as a string)
 
@@ -94,6 +100,27 @@ Effect Sizes
 
 * **nom_es_jbme(data, field, test='pearson', corr='none')**, JBM E
 
+### For a Single Ordinal Variable 
 
+Impression
 
+* **frequencyTable(data, field)**, this will generate a frequency table with percentages, valid percentages and cumulative percentages
+
+Visualisations
+
+* **ord_vi_barstack(data, field, order='none', height='count')**, generates a stacked bar-chart of one variable
+
+Statistical measures
+
+* **ord_ce_median(data, field, order='none')**, determines the median
+* **ord_di_consensus(data, field, order='none')**, determines the measure Consensus
+
+Hypothesis Tests:
+
+* **ord_ts_sign(data, field, order='none', hypMed='none')**, performs a one-sample sign test
+* **ord_ts_wilcox(data, field, order='none', hypMed='none', exact=NULL, correct=FALSE)**, performs a one-sample Wilcoxon signed rank test
+
+Effect Size
+
+* **ord_es_rosenthal(data, field, order='none', hypMed='none', correct=FALSE)**, determines the Rosenthal Correlation
 
